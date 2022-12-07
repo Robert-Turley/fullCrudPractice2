@@ -24,7 +24,10 @@ def register():
         'email': request.form['email'],
         'password': hash
     }
-    print(data)
+    if User.validate(data):
+        User.create(data)
+        return redirect('/')
+
     User.create(data)
     return redirect('/')
 
